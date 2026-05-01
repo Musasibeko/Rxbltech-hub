@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RxblTech-hub | Art meets Technology</title>
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefefe;
+            scroll-behavior: smooth;
+        }
+        /* vibrant & modern colors */
+        :root {
+            --primary-dark: #0a0c10;
+            --primary-accent: #7c3aed;
+            --accent-glow: #a855f7;
+            --light-bg: #ffffff;
+            --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.02);
+            --hover-scale: scale(1.02);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #7c3aed, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .brand-tag {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6c757d;
+        }
+        .hero-section {
+            background: linear-gradient(145deg, #ffffff 0%, #f5f3ff 100%);
+            border-bottom: 1px solid rgba(124,58,237,0.15);
+        }
+        .badge-founder {
+            background: #ede9fe;
+            color: #5b21b6;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+        .service-card, .package-card {
+            transition: all 0.25s ease-in-out;
+            border: none;
+            border-radius: 28px;
+            background: var(--light-bg);
+            box-shadow: var(--card-shadow);
+            height: 100%;
+        }
+        .service-card:hover, .package-card:hover {
+            transform: var(--hover-scale);
+            box-shadow: 0 25px 40px -12px rgba(124,58,237,0.2);
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        .package-card {
+            padding: 1.5rem;
+        }
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .price-small {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        .hosting-fee {
+            background: #f1f5f9;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: 0.2s;
+            border: none;
+        }
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+            color: white;
+        }
+        .btn-outline-accent {
+            border: 2px solid var(--primary-accent);
+            background: transparent;
+            border-radius: 40px;
+            font-weight: 600;
+            color: var(--primary-accent);
+            transition: 0.2s;
+        }
+        .btn-outline-accent:hover {
+            background: var(--primary-accent);
+            color: white;
+        }
+        .faq-img-icon {
+            font-size: 2rem;
+            color: var(--primary-accent);
+        }
+        .img-pop {
+            transition: transform 0.2s ease, filter 0.2s;
+            border-radius: 24px;
+            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.1);
+        }
+        .img-pop:hover {
+            transform: scale(1.02);
+            filter: brightness(1.02) contrast(1.02);
+        }
+        footer {
+            background: #0b1120;
+            color: #cbd5e1;
+        }
+        .section-title {
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(120deg, #1e1b4b, #4c1d95);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .form-control, .form-select {
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            padding: 10px 16px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168,85,247,0.2);
+        }
+        .contact-icon {
+            background: #ede9fe;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            color: #6d28d9;
+            font-size: 1.4rem;
+        }
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .price {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm py-2">
+    <div class="container">
+        <a class="navbar-brand fw-bolder" href="#">RxblTech<span class="text-dark">-hub</span>
+            <span class="brand-tag d-block" style="font-size: 0.7rem;">Art meets Technology</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#packages">Packages</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#inquiry">Inquiry</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section (Founder + About) -->
+<section id="home" class="hero-section py-5">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="badge-founder mb-3"><i class="fas fa-code me-1"></i> FOUNDER · Musawenkosi Sibeko</div>
+                <h1 class="display-4 fw-bolder lh-1 mb-3">Digital solutions where <span class="text-primary" style="color:#7c3aed !important;">code meets creativity</span></h1>
+                <p class="lead text-secondary">Modern, responsive and reliable websites for individuals & businesses. We combine creativity and technology to deliver digital solutions that help brands grow online.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="#packages" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold">Explore packages <i class="fas fa-arrow-right ms-1"></i></a>
+                    <a href="#inquiry" class="btn btn-outline-accent px-4 py-2">Start a project</a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <!-- Eye-catching pop image (abstract tech + art) -->
+                <img src="https://placehold.co/600x500/ede9fe/7c3aed?text=RxblTech+art+&+code" alt="Creative technology illustration" class="img-fluid img-pop rounded-4 shadow-lg" style="max-height: 320px; width: auto; object-fit: cover;">
+                <p class="small text-muted mt-2">Art meets technology — modern visions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES WE OFFER -->
+<section id="services" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-dark bg-opacity-10 text-dark rounded-pill px-3 py-2 mb-2"><i class="fas fa-cogs me-1"></i> core expertise</span>
+            <h2 class="section-title">SERVICES WE OFFER</h2>
+            <p class="text-secondary col-lg-7 mx-auto">Tailored digital craftsmanship for every brand.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-laptop-code fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">Website Design & Development</h4>
+                    <p class="text-secondary">Pixel-perfect designs, fully responsive and future-proof.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-mobile-alt fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">Responsive Websites</h4>
+                    <p class="text-secondary">Mobile & desktop perfection — seamless experience everywhere.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-chart-line fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">Business & Landing Pages</h4>
+                    <p class="text-secondary">High-converting designs that elevate your brand story.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-search fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">Basic SEO Setup</h4>
+                    <p class="text-secondary">Get discovered, improve rankings and visibility.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-cloud-upload-alt fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">Deployment & Hosting Setup</h4>
+                    <p class="text-secondary">Smooth launch, domain & hosting assistance — R300 flat fee.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card p-4 text-center h-100">
+                    <div class="mb-3"><i class="fas fa-database fa-3x" style="color:#7c3aed;"></i></div>
+                    <h4 class="fw-bold">CMS & Dynamic Solutions</h4>
+                    <p class="text-secondary">Full admin dashboard & database integration (Premium).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PACKAGES SECTION + Hosting note -->
+<section id="packages" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">OUR PACKAGES</h2>
+            <p class="text-secondary">Choose the perfect plan + R300 hosting setup fee (all packages)</p>
+            <div class="hosting-fee"><i class="fas fa-server me-1"></i> HOSTING FEE: R300 on all packages — includes getting your website live & accessible online.</div>
+        </div>
+        <div class="row g-5">
+            <!-- BASIC -->
+            <div class="col-md-6 col-lg-4">
+                <div class="package-card h-100">
+                    <h3 class="fw-bold mb-1">BASIC</h3>
+                    <div class="price my-2">R2500<span class="price-small"> + R300 hosting</span></div>
+                    <hr>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Up to 5 Pages</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Mobile Responsive Design</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Contact Form</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Clean & Simple Layout</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Basic SEO Setup</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Fast Delivery</li>
+                    </ul>
+                    <div class="mt-4"><span class="badge bg-secondary">+ Hosting Setup R300</span></div>
+                    <button class="btn btn-whatsapp w-100 mt-4 inquiry-btn" data-package="BASIC (R2500 + R300 hosting)" data-type="website">💬 Inquire via WhatsApp</button>
+                </div>
+            </div>
+            <!-- BUSINESS -->
+            <div class="col-md-6 col-lg-4">
+                <div class="package-card h-100 border-top border-4 border-primary">
+                    <h3 class="fw-bold mb-1">BUSINESS</h3>
+                    <div class="price my-2">R5000<span class="price-small"> + R300 hosting</span></div>
+                    <hr>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Up to 10 Pages</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Custom Design</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Mobile Responsive Design</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Contact Forms & Interactions</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Basic Backend (PHP)</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>SEO Setup</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>1 Month Support After Delivery</li>
+                    </ul>
+                    <div class="mt-4"><span class="badge bg-secondary">+ Hosting Setup R300</span></div>
+                    <button class="btn btn-whatsapp w-100 mt-4 inquiry-btn" data-package="BUSINESS (R5000 + R300 hosting)" data-type="website">💬 WhatsApp Inquiry</button>
+                </div>
+            </div>
+            <!-- PREMIUM -->
+            <div class="col-md-6 col-lg-4">
+                <div class="package-card h-100">
+                    <h3 class="fw-bold mb-1">PREMIUM</h3>
+                    <div class="price my-2">R8000<span class="price-small"> + R300 hosting</span></div>
+                    <hr>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Unlimited Pages</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Fully Custom Design</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Advanced Features & Dynamic Functionality</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Admin Dashboard / CMS</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Database Integration</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>SEO Optimization & Performance</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Priority Support & Faster Delivery</li>
+                    </ul>
+                    <div class="mt-4"><span class="badge bg-secondary">+ Hosting Setup R300</span></div>
+                    <button class="btn btn-whatsapp w-100 mt-4 inquiry-btn" data-package="PREMIUM (R8000 + R300 hosting)" data-type="website">💬 WhatsApp Inquiry</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INQUIRY SECTION: dropdown (website OR app) + WhatsApp integration -->
+<section id="inquiry" class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-paper-plane fa-2x text-primary"></i>
+                            <h2 class="fw-bold mt-2">Let’s Discuss Your Vision</h2>
+                            <p class="text-secondary">Choose website or app development — we’ll respond on WhatsApp.</p>
+                        </div>
+                        <form id="inquiryForm">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Full name *</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Musawenkosi Sibeko" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Email address</label>
+                                <input type="email" class="form-control" id="emailInput" placeholder="hello@rxbltech.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">I'm interested in:</label>
+                                <select class="form-select" id="projectType" required>
+                                    <option value="" disabled selected>— Select service type —</option>
+                                    <option value="Website Development">🌐 Website Development</option>
+                                    <option value="App Development">📱 App Development (Mobile/WebApp)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Preferred package (optional)</label>
+                                <select class="form-select" id="packageSelect">
+                                    <option value="Not specified">Choose package (Basic/Business/Premium)</option>
+                                    <option value="BASIC (R2500 + R300)">BASIC — R2500 + hosting</option>
+                                    <option value="BUSINESS (R5000 + R300)">BUSINESS — R5000 + hosting</option>
+                                    <option value="PREMIUM (R8000 + R300)">PREMIUM — R8000 + hosting</option>
+                                    <option value="Custom project">Custom / not sure yet</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Project details / message</label>
+                                <textarea class="form-control" rows="3" id="projectMsg" placeholder="Tell me about your website or app idea..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-whatsapp w-100 py-2 fw-bold"><i class="fab fa-whatsapp me-2"></i> Send via WhatsApp (065 989 8845)</button>
+                        </form>
+                        <p class="small text-muted mt-3 text-center">I'll reach out to you directly on WhatsApp to discuss your project.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GET IN TOUCH + contact pop images -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-5 text-center">
+                <!-- attention grabbing image: let's use abstract modern design -->
+                <img src="https://placehold.co/500x450/ffffff/7c3aed?text=Let's+build+great+stuff" alt="Let's build together" class="img-fluid img-pop rounded-4 shadow">
+                <div class="mt-3 d-flex justify-content-center gap-3">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h2 class="section-title mb-4">GET IN TOUCH</h2>
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <i class="fas fa-phone-alt fa-2x text-primary"></i>
+                    <h3 class="fs-2 fw-bold mb-0">065 989 8845</h3>
+                </div>
+                <p class="lead">Your vision. Our code. Real results.</p>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <div class="bg-white p-3 rounded-3 shadow-sm text-center">
+                            <i class="fas fa-clock fa-fw text-primary"></i>
+                            <span class="d-block fw-semibold">Fast delivery</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-white p-3 rounded-3 shadow-sm text-center">
+                            <i class="fas fa-code-branch fa-fw text-primary"></i>
+                            <span class="d-block fw-semibold">Modern stack</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center text-md-start">
+                    <a href="https://wa.me/27659898845?text=Hello%20RxblTech-hub%2C%20I'm%20interested%20in%20your%20digital%20services!" target="_blank" class="btn btn-whatsapp btn-lg px-4"><i class="fab fa-whatsapp me-2"></i>Chat directly on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="pt-5 pb-4 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h4 class="fw-bold text-white">RxblTech-hub</h4>
+                <p class="text-secondary-emphasis">Art meets Technology — modern, responsive & reliable digital solutions.</p>
+                <div><i class="fab fa-whatsapp me-2 text-success"></i> <span class="text-light">065 989 8845</span></div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h6 class="fw-bold text-white">Explore</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-decoration-none text-secondary">Home</a></li>
+                    <li><a href="#services" class="text-decoration-none text-secondary">Services</a></li>
+                    <li><a href="#packages" class="text-decoration-none text-secondary">Packages</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h6 class="fw-bold text-white">Founder</h6>
+                <p class="text-secondary">Musawenkosi Sibeko<br>Software Engineer</p>
+                <p class="small text-secondary">© 2025 RxblTech-hub — all systems go.</p>
+            </div>
+        </div>
+        <div class="border-top border-secondary mt-2 pt-3 text-center small text-secondary">
+            <i class="fas fa-code"></i> Built with Bootstrap & creativity — ready for GitHub hosting
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Helper: WhatsApp send function that uses number 0659898845 (format for international: 27659898845)
+    const PHONE = "27659898845";  // South Africa code +27 without plus: 27 65 989 8845 → 27659898845
+
+    function sendWhatsAppMessage(text) {
+        let encoded = encodeURIComponent(text);
+        let url = `https://wa.me/${PHONE}?text=${encoded}`;
+        window.open(url, '_blank');
+    }
+
+    // Handle all package inquiry buttons (from Packages section)
+    document.querySelectorAll('.inquiry-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            let packageName = this.getAttribute('data-package') || "RxblTech Package";
+            let type = this.getAttribute('data-type') || "website";
+            let msg = `Hello RxblTech-hub! I'm interested in the ${packageName} (${type} project). Please share more details. Thank you!`;
+            sendWhatsAppMessage(msg);
+        });
+    });
+
+    // Inquiry form handling: dropdown whether website or app, name, email, package & message
+    const inquiryForm = document.getElementById('inquiryForm');
+    if (inquiryForm) {
+        inquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let name = document.getElementById('fullName')?.value.trim();
+            let email = document.getElementById('emailInput')?.value.trim() || "Not provided";
+            let projectTypeElem = document.getElementById('projectType');
+            let projectType = projectTypeElem ? projectTypeElem.value : "Not specified";
+            let packageSelectElem = document.getElementById('packageSelect');
+            let selectedPackage = packageSelectElem ? packageSelectElem.value : "Not specified";
+            let details = document.getElementById('projectMsg')?.value.trim() || "No extra details";
+
+            if (!name) {
+                alert("Please enter your full name.");
+                return;
+            }
+            if (!projectType || projectType === "") {
+                alert("Please select if you want a Website or an App development.");
+                return;
+            }
+
+            // Build a rich WhatsApp message
+            let message = `🌟 New project inquiry from RxblTech-hub website 🌟\n\n`;
+            message += `*Name:* ${name}\n`;
+            message += `*Email:* ${email}\n`;
+            message += `*Service type:* ${projectType}\n`;
+            message += `*Package interest:* ${selectedPackage}\n`;
+            message += `*Message:* ${details}\n\n`;
+            message += `Let's build something great! 💻`;
+
+            sendWhatsAppMessage(message);
+            // Optional: reset or leave as is
+            inquiryForm.reset();
+            // small user feedback 
+            alert("✅ Redirecting to WhatsApp. Please send the message to connect with RxblTech-hub!");
+        });
+    }
+
+    // Additional: for any "Chat directly" button we keep functionality but already present
+    // also ensure phone number consistency: 065 989 8845 appears in text, whatsapp links use 27659898845
+    console.log("RxblTech ready — professional portfolio, WhatsApp integrated, dropdown for website/app.");
+</script>
+</body>
+</html>
